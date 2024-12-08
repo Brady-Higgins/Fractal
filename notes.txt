@@ -1,0 +1,8 @@
+Graph Dimensions
+x-axis: 0 to WIDTH
+y-axis: 0 to HEIGHT
+
+0 1 2 3
+1
+2
+3
