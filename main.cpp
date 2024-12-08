@@ -2,7 +2,7 @@
 #include <SDL2/SDL.h>
 
 const int WIDTH = 800, HEIGHT = 600;
-
+const int X_BOUND = 50, Y_BOUND = 800;
 
 void set_background(SDL_Renderer *renderer)
 {
@@ -28,13 +28,18 @@ void plot_equation(SDL_Renderer *renderer)
     SDL_SetRenderDrawColor(renderer, 0, 0, 255, 0);
     int x_origin = WIDTH / 2;
     int y_origin = HEIGHT / 2;
+    int x_step = WIDTH / X_BOUND;
     // i serves as intercept for plotting to screen
-    int x = -WIDTH / 2;
-    for (int x = -WIDTH/2, i = 0; i <= WIDTH; x++,i++)
+    int x = -X_BOUND / 2;
+    for (int i = 0; i <= WIDTH; i++)
     {
-        // int y = x * x;
-        int y = x;
-        SDL_RenderDrawPoint(renderer, i, y_origin - y);
+        // Keep Graph Width but num x intercepts = X_BOUND * 2
+        if (i % x_step == 0)
+        {
+            int y = x * x;
+            SDL_RenderDrawPoint(renderer, i, y_origin - y);
+            x++;
+        }
     }
     SDL_RenderPresent(renderer);
 }
